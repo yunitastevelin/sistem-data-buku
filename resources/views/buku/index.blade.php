@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Data Buku</h1>
+<h2 class="mb-3">Data Buku</h2>
 
 <a href="/buku/create" class="btn btn-primary mb-3">
     + Tambah Buku
@@ -15,7 +15,7 @@
 @endif
 
 <table class="table table-bordered table-striped">
-    <thead>
+    <thead class="table-dark">
         <tr>
             <th>No</th>
             <th>Judul</th>
@@ -47,7 +47,8 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-danger btn-sm">
+                    <button type="submit" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Yakin ingin menghapus data ini?')">
                         Hapus
                     </button>
                 </form>
