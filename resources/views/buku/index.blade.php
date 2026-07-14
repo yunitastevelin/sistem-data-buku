@@ -2,10 +2,10 @@
 
 @section('content')
 
-<h1>Data Kategori</h1>
+<h1>Data Buku</h1>
 
-<a href="/kategori/create" class="btn btn-primary mb-3">
-    + Tambah Kategori
+<a href="/buku/create" class="btn btn-primary mb-3">
+    + Tambah Buku
 </a>
 
 @if(session('success'))
@@ -18,22 +18,32 @@
     <thead>
         <tr>
             <th>No</th>
-            <th>Nama Kategori</th>
+            <th>Judul</th>
+            <th>Penulis</th>
+            <th>Penerbit</th>
+            <th>Tahun</th>
+            <th>Kategori</th>
+            <th>Stok</th>
             <th width="180">Aksi</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach($kategori as $item)
+        @foreach($buku as $item)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $item->nama_kategori }}</td>
+            <td>{{ $item->judul }}</td>
+            <td>{{ $item->penulis }}</td>
+            <td>{{ $item->penerbit }}</td>
+            <td>{{ $item->tahun_terbit }}</td>
+            <td>{{ $item->kategori->nama_kategori }}</td>
+            <td>{{ $item->stok }}</td>
             <td>
-                <a href="/kategori/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
+                <a href="/buku/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
                     Edit
                 </a>
 
-                <form action="/kategori/{{ $item->id }}" method="POST" style="display:inline;">
+                <form action="/buku/{{ $item->id }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
 
@@ -45,6 +55,7 @@
         </tr>
         @endforeach
     </tbody>
+
 </table>
 
 @endsection
