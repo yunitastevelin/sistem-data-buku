@@ -1,43 +1,56 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <title>Edit Buku</title>
-</head>
+@section('content')
 
-<body>
+<h2>Edit Buku</h2>
 
-    <h1>Edit Buku</h1>
-
-    @if ($errors->any())
-    <ul style="color:red;">
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul class="mb-0">
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
         @endforeach
     </ul>
-    @endif
+</div>
+@endif
 
-    <form action="/buku/{{ $buku->id }}" method="POST">
-        @csrf
-        @method('PUT')
+<form action="/buku/{{ $buku->id }}" method="POST">
+    @csrf
+    @method('PUT')
 
-        <label>Judul Buku</label><br>
-        <input type="text" name="judul" value="{{ $buku->judul }}"><br><br>
+    <div class="mb-3">
+        <label class="form-label">Judul Buku</label>
+        <input type="text" name="judul" class="form-control"
+            value="{{ old('judul', $buku->judul) }}">
+    </div>
 
-        <label>Penulis</label><br>
-        <input type="text" name="penulis" value="{{ $buku->penulis }}"><br><br>
+    <div class="mb-3">
+        <label class="form-label">Penulis</label>
+        <input type="text" name="penulis" class="form-control"
+            value="{{ old('penulis', $buku->penulis) }}">
+    </div>
 
-        <label>Penerbit</label><br>
-        <input type="text" name="penerbit" value="{{ $buku->penerbit }}"><br><br>
+    <div class="mb-3">
+        <label class="form-label">Penerbit</label>
+        <input type="text" name="penerbit" class="form-control"
+            value="{{ old('penerbit', $buku->penerbit) }}">
+    </div>
 
-        <label>Tahun Terbit</label><br>
-        <input type="number" name="tahun_terbit" value="{{ $buku->tahun_terbit }}"><br><br>
+    <div class="mb-3">
+        <label class="form-label">Tahun Terbit</label>
+        <input type="number" name="tahun_terbit" class="form-control"
+            value="{{ old('tahun_terbit', $buku->tahun_terbit) }}">
+    </div>
 
-        <label>Stok</label><br>
-        <input type="number" name="stok" value="{{ $buku->stok }}"><br><br>
+    <div class="mb-3">
+        <label class="form-label">Stok</label>
+        <input type="number" name="stok" class="form-control"
+            value="{{ old('stok', $buku->stok) }}">
+    </div>
 
-        <label>Kategori</label><br>
-        <select name="kategori_id">
+    <div class="mb-3">
+        <label class="form-label">Kategori</label>
+        <select name="kategori_id" class="form-select">
             @foreach($kategori as $item)
             <option value="{{ $item->id }}"
                 {{ $item->id == $buku->kategori_id ? 'selected' : '' }}>
@@ -45,16 +58,16 @@
             </option>
             @endforeach
         </select>
+    </div>
 
-        <br><br>
+    <button type="submit" class="btn btn-primary">
+        Update
+    </button>
 
-        <button type="submit">Update</button>
-    </form>
+    <a href="/buku" class="btn btn-secondary">
+        Kembali
+    </a>
 
-    <br>
+</form>
 
-    <a href="/buku">Kembali</a>
-
-</body>
-
-</html>
+@endsection
