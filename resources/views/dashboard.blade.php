@@ -1,24 +1,41 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <title>Sistem Data Buku</title>
-</head>
+@section('content')
+    <h2 class="mb-4">📚 Dashboard Sistem Data Buku</h2>
 
-<body>
-    <h1>📚 Sistem Data Buku</h1>
-    <hr>
+    <div class="row">
 
-    <h3>Menu</h3>
+        <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+                <div class="card-body">
+                    <h5>Jumlah Buku</h5>
+                    <h2>{{ $jumlahBuku }}</h2>
+                </div>
+            </div>
+        </div>
 
-    <ul>
-        <li>Dashboard</li>
-        <li>Data Buku</li>
-        <li>Data Anggota</li>
-        <li>Peminjaman</li>
-        <li>Pengembalian</li>
-    </ul>
+        <div class="col-md-4">
+            <div class="card text-bg-success mb-3">
+                <div class="card-body">
+                    <h5>Jumlah Kategori</h5>
+                    <h2>{{ $jumlahKategori }}</h2>
+                </div>
+            </div>
+        </div>
 
-</body>
+        <div class="col-md-4">
+            <div class="card text-bg-warning mb-3">
+                <div class="card-body">
+                    <h5>Total Stok Buku</h5>
+                    <h2>{{ $totalStok }}</h2>
+                </div>
+            </div>
+        </div>
 
-</html>
+    </div>
+
+    <div class="mt-4">
+        <a href="/kategori" class="btn btn-success">📂 Kelola Kategori</a>
+        <a href="/buku" class="btn btn-primary">📚 Kelola Buku</a>
+    </div>
+@endsection
